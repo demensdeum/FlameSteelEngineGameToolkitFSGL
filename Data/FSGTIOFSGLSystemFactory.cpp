@@ -12,6 +12,7 @@
  */
 
 #include "FSGTIOFSGLSystemFactory.h"
+#include <FlameSteelEngineGameToolkit/Const/FSEGTConst.h>
 
 #include <FSGL/Data/ResourcesLoader/FSGLResourceLoader.h>
 
@@ -30,7 +31,13 @@ shared_ptr<FSGLObject> FSGTIOFSGLSystemFactory::graphicsObjectFrom(shared_ptr<FS
     
     auto model = shared_ptr<FSGLModel>();
     
-    auto modelFilePath = FSEGTUtils::getModelFilePathForObject(object);
+    auto modelFilePath = shared_ptr<string>();
+
+	if (object->containsComponentWithIdentifier(make_shared<string>(FSEGTConstComponentsModel)))
+	{
+		modelFilePath = FSEGTUtils::getModelFilePathForObject(object);
+	}
+
     auto serializedModel = FSEGTUtils::getSerializedModel(object);
 
 	if (modelFilePath.get() != nullptr) {
@@ -60,7 +67,7 @@ shared_ptr<FSGLObject> FSGTIOFSGLSystemFactory::graphicsObjectFrom(shared_ptr<FS
     
     auto position = FSEGTUtils::getObjectPosition(object);
     
-    graphicsObject->id = object->id;
+    graphicsObject->id = object->uuid;
     
     graphicsObject->positionVector->x = position->x;
     graphicsObject->positionVector->y = position->z;

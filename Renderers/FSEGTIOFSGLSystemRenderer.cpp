@@ -80,7 +80,7 @@ void FSEGTIOFSGLSystemRenderer::objectsContextObjectUpdate(shared_ptr<FSEGTObjec
         auto position = FSEGTUtils::getObjectPosition(object);
         auto rotation = FSEGTUtils::getObjectRotation(object);
         
-        auto id = object->id;
+        auto id = object->uuid;
         auto graphicsObject = controller->getObjectWithID(id);
         
         graphicsObject->positionVector->x = position->x;
@@ -108,7 +108,7 @@ void FSEGTIOFSGLSystemRenderer::objectsContextObjectUpdate(shared_ptr<FSEGTObjec
 
 }
 
-void FSEGTIOFSGLSystemRenderer::addRenderID(int id) {
+void FSEGTIOFSGLSystemRenderer::addRenderID(string id) {
     
     controller->addRenderID(id);
     
