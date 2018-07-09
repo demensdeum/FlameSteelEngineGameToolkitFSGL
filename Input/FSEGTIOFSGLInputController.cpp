@@ -14,6 +14,7 @@
 #include "FSEGTIOFSGLInputController.h"
 
 #include <SDL2/SDL.h>
+#include <iostream>
 
 FSEGTIOFSGLInputController::FSEGTIOFSGLInputController() {
     
@@ -26,6 +27,42 @@ FSEGTIOFSGLInputController::FSEGTIOFSGLInputController(const FSEGTIOFSGLInputCon
 
 void FSEGTIOFSGLInputController::pollKey() {
     
+	if (window == nullptr)
+	{
+		throw logic_error("window is nullptr");
+	}
+
+	int mouseX = 0;
+	int mouseY = 0;
+
+	if (pointerPollingStarted)
+	{
+		SDL_GetMouseState(&mouseX, &mouseY);
+	}
+
+	int windowWidth = 0;
+	int windowHeight = 0;
+
+	SDL_GetWindowSize(window, &windowWidth, &windowHeight);
+
+	pointerXdiff = mouseX - (windowWidth / 2);
+	pointerYdiff = mouseY - (windowHeight / 2);
+
+	if (pointerXdiff != 0)
+	{
+		cout << pointerXdiff << endl;
+	}
+
+	if (pointerXdiff != 0 || pointerYdiff != 0)
+	{
+		SDL_WarpMouseInWindow(window, windowWidth / 2, windowHeight / 2);
+	}
+
+	if (!pointerPollingStarted)
+	{
+		pointerPollingStarted = true;
+	}
+
     SDL_Event event;
 
     while (SDL_PollEvent(&event)) {

@@ -15,6 +15,7 @@
 #define FSEGTIOFSGLSYSTEM_H
 
 #include <FlameSteelEngineGameToolkit/IO/IOSystems/FSEGTIOSystem.h>
+#include <memory>
 
 class FSEGTIOFSGLSystem: public FSEGTIOSystem {
 public:

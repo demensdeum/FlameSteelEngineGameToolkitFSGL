@@ -27,7 +27,7 @@ FSEGTIOFSGLSystemRenderer::FSEGTIOFSGLSystemRenderer(const FSEGTIOFSGLSystemRend
 void FSEGTIOFSGLSystemRenderer::initialize() {
 
     controller = make_shared<FSGLController>();
-    controller->initialize();
+    window = controller->initialize();
 
 }
 

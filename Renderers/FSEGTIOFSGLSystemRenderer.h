@@ -18,6 +18,9 @@
 
 #include <FSGL/Controller/FSGLController.h>
 
+class FSEGTIOFSGLSystem;
+class SDL_Window;
+
 class FSEGTIOFSGLSystemRenderer: public FSEGTRenderer {
 public:
     FSEGTIOFSGLSystemRenderer();
@@ -34,10 +37,11 @@ public:
     
     virtual void addRenderID(string id);
     virtual void cleanRenderIDs();    
+
+	SDL_Window *window = nullptr;
     
 private:
-
-    shared_ptr<FSGLController> controller;
+	shared_ptr<FSGLController> controller;
     
 };
 

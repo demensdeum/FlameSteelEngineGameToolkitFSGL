@@ -28,10 +28,19 @@ void FSEGTIOFSGLSystem::initialize(shared_ptr<FSEGTIOSystemParams> ) {
     
     cout << "FSGL Desktop Initialize" << endl;
     
-    renderer = make_shared<FSEGTIOFSGLSystemRenderer>();
-    renderer->initialize();
+	auto fsglRenderer = make_shared<FSEGTIOFSGLSystemRenderer>();
+
+    renderer = fsglRenderer;
+	renderer->ioSystem = shared_from_this();
+
+ fsglRenderer->initialize();
+
+    auto window = fsglRenderer->window;
     
-    inputController = make_shared<FSEGTIOFSGLInputController>();
+	auto fsglInputController = make_shared<FSEGTIOFSGLInputController>();
+
+    inputController = fsglInputController;
+	fsglInputController->window = window;
 }
 
 void FSEGTIOFSGLSystem::objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object) {

@@ -16,6 +16,8 @@
 
 #include <FlameSteelEngineGameToolkit/IO/Input/FSEGTInputController.h>
 
+class SDL_Window;
+
 class FSEGTIOFSGLInputController: public FSEGTInputController {
 public:
     FSEGTIOFSGLInputController();
@@ -24,7 +26,11 @@ public:
     
     virtual void pollKey(); 
     
+	SDL_Window *window = nullptr;
+
 private:
+
+	bool pointerPollingStarted = false;
 
 };
 
