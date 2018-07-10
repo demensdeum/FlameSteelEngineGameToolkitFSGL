@@ -48,10 +48,10 @@ void FSEGTIOFSGLInputController::pollKey() {
 	pointerXdiff = mouseX - (windowWidth / 2);
 	pointerYdiff = mouseY - (windowHeight / 2);
 
-	if (pointerXdiff != 0)
+	/*if (pointerXdiff != 0)
 	{
 		cout << pointerXdiff << endl;
-	}
+	}*/
 
 	if (pointerXdiff != 0 || pointerYdiff != 0)
 	{
