@@ -70,8 +70,8 @@ shared_ptr<FSGLObject> FSGTIOFSGLSystemFactory::graphicsObjectFrom(shared_ptr<FS
     graphicsObject->id = object->uuid;
     
     graphicsObject->positionVector->x = position->x;
-    graphicsObject->positionVector->y = position->z;
-    graphicsObject->positionVector->z = position->y;
+    graphicsObject->positionVector->y = position->y;
+    graphicsObject->positionVector->z = position->z;
     
     auto scale = FSEGTUtils::getObjectScale(object);
     

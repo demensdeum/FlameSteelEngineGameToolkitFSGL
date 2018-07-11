@@ -49,7 +49,7 @@ void FSEGTIOFSGLSystemRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObject
 	
 	}
 
-    if (object->getClassIdentifier()->compare("scene object") == 0) {
+    if (FSEGTUtils::contains3D(object)) {
 
         auto graphicsObject = FSGTIOFSGLSystemFactory::graphicsObjectFrom(object);
 
@@ -75,7 +75,7 @@ void FSEGTIOFSGLSystemRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObject
 
 void FSEGTIOFSGLSystemRenderer::objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> , shared_ptr<FSCObject> object) {
 
-    if (object->getClassIdentifier()->compare("scene object") == 0) {
+    if (FSEGTUtils::contains3D(object)) {
 
         auto position = FSEGTUtils::getObjectPosition(object);
         auto rotation = FSEGTUtils::getObjectRotation(object);
@@ -84,8 +84,8 @@ void FSEGTIOFSGLSystemRenderer::objectsContextObjectUpdate(shared_ptr<FSEGTObjec
         auto graphicsObject = controller->getObjectWithID(id);
         
         graphicsObject->positionVector->x = position->x;
-        graphicsObject->positionVector->y = position->z;
-        graphicsObject->positionVector->z = position->y;
+        graphicsObject->positionVector->y = position->y;
+        graphicsObject->positionVector->z = position->z;
         
         graphicsObject->rotationVector->x = rotation->x;
         graphicsObject->rotationVector->y = rotation->y;
