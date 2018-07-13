@@ -83,6 +83,11 @@ void FSEGTIOFSGLSystemRenderer::objectsContextObjectUpdate(shared_ptr<FSEGTObjec
         auto id = object->uuid;
         auto graphicsObject = controller->getObjectWithID(id);
         
+	if (graphicsObject.get() == nullptr)
+	{
+		throw logic_error("graphics object - null");
+	}
+
         graphicsObject->positionVector->x = position->x;
         graphicsObject->positionVector->y = position->y;
         graphicsObject->positionVector->z = position->z;
