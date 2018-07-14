@@ -79,6 +79,10 @@ shared_ptr<FSGLObject> FSGTIOFSGLSystemFactory::graphicsObjectFrom(shared_ptr<Ob
     graphicsObject->scaleVector->y = scale->y;
     graphicsObject->scaleVector->z = scale->z;
     
+    auto brightness = FSEGTUtils::getObjectBrightness(object);
+
+	graphicsObject->brightness = brightness->floatNumber;
+
     return graphicsObject;
 }
 

@@ -79,6 +79,7 @@ void FSEGTIOFSGLSystemRenderer::objectsContextObjectUpdate(shared_ptr<FSEGTObjec
 
         auto position = FSEGTUtils::getObjectPosition(object);
         auto rotation = FSEGTUtils::getObjectRotation(object);
+        auto brightness = FSEGTUtils::getObjectBrightness(object);
         
         auto id = object->uuid;
         auto graphicsObject = controller->getObjectWithID(id);
@@ -95,6 +96,8 @@ void FSEGTIOFSGLSystemRenderer::objectsContextObjectUpdate(shared_ptr<FSEGTObjec
         graphicsObject->rotationVector->x = rotation->x;
         graphicsObject->rotationVector->y = rotation->y;
         graphicsObject->rotationVector->z = rotation->z;
+
+	graphicsObject->brightness = brightness->floatNumber;
 
     } else if (object->getClassIdentifier()->compare("camera") == 0) {
 
