@@ -37,7 +37,7 @@ void FSEGTIOFSGLSystemRenderer::render(shared_ptr<FSEGTGameData> ) {
 
 }
 
-void FSEGTIOFSGLSystemRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> , shared_ptr<FSCObject> object) {
+void FSEGTIOFSGLSystemRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> , shared_ptr<Object> object) {
 
     //cout << "FSEGTIOFSGLSystemRenderer: object add - " << object->getInstanceIdentifier()->c_str() << endl;
 
@@ -73,7 +73,7 @@ void FSEGTIOFSGLSystemRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObject
     }
 }
 
-void FSEGTIOFSGLSystemRenderer::objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> , shared_ptr<FSCObject> object) {
+void FSEGTIOFSGLSystemRenderer::objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> , shared_ptr<Object> object) {
 
     if (FSEGTUtils::contains3D(object)) {
 

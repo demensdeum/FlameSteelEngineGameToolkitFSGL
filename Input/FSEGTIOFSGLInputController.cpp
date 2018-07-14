@@ -60,6 +60,7 @@ void FSEGTIOFSGLInputController::pollKey() {
 
 	if (!pointerPollingStarted)
 	{
+		SDL_ShowCursor(SDL_DISABLE);
 		pointerPollingStarted = true;
 	}
 

@@ -27,7 +27,7 @@ FSGTIOFSGLSystemFactory::FSGTIOFSGLSystemFactory() {
 FSGTIOFSGLSystemFactory::FSGTIOFSGLSystemFactory(const FSGTIOFSGLSystemFactory& ) {
 }
 
-shared_ptr<FSGLObject> FSGTIOFSGLSystemFactory::graphicsObjectFrom(shared_ptr<FSCObject> object) {
+shared_ptr<FSGLObject> FSGTIOFSGLSystemFactory::graphicsObjectFrom(shared_ptr<Object> object) {
     
     auto model = shared_ptr<FSGLModel>();
     

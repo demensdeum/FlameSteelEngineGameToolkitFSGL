@@ -25,8 +25,8 @@ public:
     
     virtual void initialize(shared_ptr<FSEGTIOSystemParams> params);
     
-    virtual void objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object);
-    virtual void objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object);
+    virtual void objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object);
+    virtual void objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object);
     virtual void objectsContextAllObjectsRemoved(shared_ptr<FSEGTObjectsContext> context);    
     
 private:

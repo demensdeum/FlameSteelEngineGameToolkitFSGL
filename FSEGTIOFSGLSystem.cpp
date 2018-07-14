@@ -43,13 +43,13 @@ void FSEGTIOFSGLSystem::initialize(shared_ptr<FSEGTIOSystemParams> ) {
 	fsglInputController->window = window;
 }
 
-void FSEGTIOFSGLSystem::objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object) {
+void FSEGTIOFSGLSystem::objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object) {
 
     renderer->objectsContextObjectAdded(context, object);
 
 }
 
-void FSEGTIOFSGLSystem::objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object) {
+void FSEGTIOFSGLSystem::objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object) {
     
     renderer->objectsContextObjectUpdate(context, object);
     

@@ -18,9 +18,10 @@
 
 #include <FSGL/Data/Object/FSGLObject.h>
 
-#include <FlameSteelCore/FSCObject.h>
+#include <FlameSteelCore/Object.h>
 
 using namespace std;
+using namespace FlameSteelCore;
 
 class FSGTIOFSGLSystemFactory {
 public:
@@ -28,7 +29,7 @@ public:
     FSGTIOFSGLSystemFactory(const FSGTIOFSGLSystemFactory& orig);
     virtual ~FSGTIOFSGLSystemFactory();
     
-    static shared_ptr<FSGLObject> graphicsObjectFrom(shared_ptr<FSCObject> object);
+    static shared_ptr<FSGLObject> graphicsObjectFrom(shared_ptr<Object> object);
     
 private:
 
