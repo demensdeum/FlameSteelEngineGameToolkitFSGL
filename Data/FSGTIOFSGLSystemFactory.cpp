@@ -38,7 +38,12 @@ shared_ptr<FSGLObject> FSGTIOFSGLSystemFactory::graphicsObjectFrom(shared_ptr<Ob
 		modelFilePath = FSEGTUtils::getModelFilePathForObject(object);
 	}
 
-    auto serializedModel = FSEGTUtils::getSerializedModel(object);
+    auto serializedModel = shared_ptr<FSEGTSerializedModel>();
+
+	if (object->containsComponentWithIdentifier(make_shared<string>(FSEGTConstComponentsSerializedModel)))
+	{
+		serializedModel = FSEGTUtils::getSerializedModel(object);
+	}
 
 	if (modelFilePath.get() != nullptr) {
 
