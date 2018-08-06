@@ -16,7 +16,7 @@
 
 #include <FlameSteelEngineGameToolkit/IO/Input/FSEGTInputController.h>
 
-class SDL_Window;
+struct SDL_Window;
 
 class FSEGTIOFSGLInputController: public FSEGTInputController {
 public:

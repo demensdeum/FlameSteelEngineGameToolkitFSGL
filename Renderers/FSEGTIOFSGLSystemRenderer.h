@@ -19,7 +19,7 @@
 #include <FSGL/Controller/FSGLController.h>
 
 class FSEGTIOFSGLSystem;
-class SDL_Window;
+struct SDL_Window;
 
 class FSEGTIOFSGLSystemRenderer: public FSEGTRenderer {
 public:

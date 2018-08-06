@@ -27,6 +27,8 @@ FSEGTIOFSGLInputController::FSEGTIOFSGLInputController(const FSEGTIOFSGLInputCon
 
 void FSEGTIOFSGLInputController::pollKey() {
     
+	SDL_PumpEvents();
+
 	if (window == nullptr)
 	{
 		throw logic_error("window is nullptr");
@@ -45,8 +47,12 @@ void FSEGTIOFSGLInputController::pollKey() {
 
 	SDL_GetWindowSize(window, &windowWidth, &windowHeight);
 
-	pointerXdiff = mouseX - (windowWidth / 2);
-	pointerYdiff = mouseY - (windowHeight / 2);
+	// SDL2 bug workaround https://stackoverflow.com/questions/17762842/sdl-getmousestate-doesnt-work-to-get-initial-mouse-position
+	if (mouseX > 0 && mouseY > 0)
+	{
+		pointerXdiff = mouseX - (windowWidth / 2);
+		pointerYdiff = mouseY - (windowHeight / 2);
+	}
 
 	/*if (pointerXdiff != 0)
 	{
@@ -56,6 +62,14 @@ void FSEGTIOFSGLInputController::pollKey() {
 	if (pointerXdiff != 0 || pointerYdiff != 0)
 	{
 		SDL_WarpMouseInWindow(window, windowWidth / 2, windowHeight / 2);
+
+		auto oldMouseX = mouseX;
+		auto oldMouseY = mouseY;
+
+		SDL_GetMouseState(&mouseX, &mouseY);
+
+		//cout << oldMouseX << ";"<< mouseX << endl;
+
 	}
 
 	if (!pointerPollingStarted)
