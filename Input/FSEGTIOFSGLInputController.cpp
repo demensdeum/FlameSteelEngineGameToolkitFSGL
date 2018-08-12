@@ -88,6 +88,10 @@ void FSEGTIOFSGLInputController::pollKey() {
                 this->exitKeyPressed = true;
                 break;
 
+            case SDL_MOUSEBUTTONUP:
+                shootKeyPressed = false;
+                break;
+
             case SDL_MOUSEBUTTONDOWN:
                 shootKeyPressed = true;
                 break;
