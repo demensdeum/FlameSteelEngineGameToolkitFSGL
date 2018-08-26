@@ -94,6 +94,8 @@ shared_ptr<FSGLObject> FSGTIOFSGLSystemFactory::graphicsObjectFrom(shared_ptr<Ob
 
 	graphicsObject->brightness = brightness->floatNumber;
 
+	graphicsObject->flag2D = FSEGTUtils::isOnScreenObject(object);
+
     return graphicsObject;
 }
 
