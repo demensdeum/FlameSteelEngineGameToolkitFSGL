@@ -96,6 +96,24 @@ shared_ptr<FSGLObject> FSGTIOFSGLSystemFactory::graphicsObjectFrom(shared_ptr<Ob
 
 	graphicsObject->flag2D = FSEGTUtils::isOnScreenObject(object);
 
+	if (object->containsComponentWithIdentifier(make_shared<string>("Surface Material"))) {
+
+	auto surfaceMaterial = FSEGTUtils::getObjectSurfaceMaterial(object);
+
+	if (surfaceMaterial.get() != nullptr) {
+		auto model = graphicsObject->model;
+		if (model->meshes.size() == 1) {
+			auto mesh = model->meshes[0];
+			mesh->material->surface  = surfaceMaterial->surface;
+		}
+		else {
+			throw logic_error("Can't add surface material, because fsgl object must contain exactly 1 mesh");
+		}
+	}
+
+	}
+
+
     return graphicsObject;
 }
 
