@@ -55,6 +55,10 @@ void FSEGTIOFSGLSystem::objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContex
     
 }
 
+void FSEGTIOFSGLSystem::objectsContextObjectRemoved(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object) {
+	renderer->objectsContextObjectRemoved(context, object);
+}
+
 void FSEGTIOFSGLSystem::objectsContextAllObjectsRemoved(shared_ptr<FSEGTObjectsContext> context) {
     
     renderer->objectsContextAllObjectsRemoved(context);

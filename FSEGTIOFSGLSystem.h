@@ -28,6 +28,7 @@ public:
     virtual void objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object);
     virtual void objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object);
     virtual void objectsContextAllObjectsRemoved(shared_ptr<FSEGTObjectsContext> context);    
+    virtual void objectsContextObjectRemoved(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object);
     
 private:
 

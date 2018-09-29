@@ -136,5 +136,13 @@ void FSEGTIOFSGLSystemRenderer::objectsContextAllObjectsRemoved(shared_ptr<FSEGT
     
 }
 
+void FSEGTIOFSGLSystemRenderer::objectsContextObjectRemoved(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object)
+{
+        auto id = object->uuid;
+        auto graphicsObject = controller->getObjectWithID(id);
+
+	controller->removeObject(graphicsObject);
+}
+
 FSEGTIOFSGLSystemRenderer::~FSEGTIOFSGLSystemRenderer() {
 }
