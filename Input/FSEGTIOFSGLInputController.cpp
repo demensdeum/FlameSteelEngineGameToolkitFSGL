@@ -112,18 +112,22 @@ void FSEGTIOFSGLInputController::pollKey() {
 				break;
 
                     case SDLK_LEFT:
+			case SDLK_a:
                         this->leftKeyPressed = true;
                         break;
 
                     case SDLK_RIGHT:
+			case SDLK_d:
                         this->rightKeyPressed = true;
                         break;
 
                     case SDLK_UP:
+			case SDLK_w:
                         this->upKeyPressed = true;
                         break;
 
                     case SDLK_DOWN:
+			case SDLK_s:
                         this->downKeyPressed = true;
                         break;
 
@@ -156,18 +160,22 @@ void FSEGTIOFSGLInputController::pollKey() {
 				break;
 
                     case SDLK_LEFT:
+			case SDLK_a:
                         this->leftKeyPressed = false;
                         break;
 
                     case SDLK_RIGHT:
+			case SDLK_d:
                         this->rightKeyPressed = false;
                         break;
 
                     case SDLK_UP:
+			case SDLK_w:
                         this->upKeyPressed = false;
                         break;
 
                     case SDLK_DOWN:
+			case SDLK_s:
                         this->downKeyPressed = false;
                         break;
 
