@@ -50,8 +50,10 @@ void FSEGTIOFSGLInputController::pollKey() {
 	// SDL2 bug workaround https://stackoverflow.com/questions/17762842/sdl-getmousestate-doesnt-work-to-get-initial-mouse-position
 	if (mouseX > 0 && mouseY > 0)
 	{
+	#ifndef __EMSCRIPTEN__
 		pointerXdiff = mouseX - (windowWidth / 2);
 		pointerYdiff = mouseY - (windowHeight / 2);
+	#endif
 	}
 
 	/*if (pointerXdiff != 0)
@@ -77,6 +79,7 @@ void FSEGTIOFSGLInputController::pollKey() {
 		SDL_ShowCursor(SDL_DISABLE);
 		pointerPollingStarted = true;
 	}
+	
 
     SDL_Event event;
 
@@ -113,12 +116,22 @@ void FSEGTIOFSGLInputController::pollKey() {
 
                     case SDLK_LEFT:
 			case SDLK_a:
-                        this->leftKeyPressed = true;
+			
+			#ifdef __EMSCRIPTEN__
+				pointerXdiff = -10;
+			#else
+				this->leftKeyPressed = true;
+			#endif
+				
                         break;
 
                     case SDLK_RIGHT:
 			case SDLK_d:
-                        this->rightKeyPressed = true;
+			#ifdef __EMSCRIPTEN__
+				pointerXdiff = 10;
+			#else			
+				this->rightKeyPressed = true;
+			#endif
                         break;
 
                     case SDLK_UP:
@@ -161,12 +174,20 @@ void FSEGTIOFSGLInputController::pollKey() {
 
                     case SDLK_LEFT:
 			case SDLK_a:
-                        this->leftKeyPressed = false;
+			#ifdef __EMSCRIPTEN__
+				pointerXdiff = 0;
+			#else				
+				this->leftKeyPressed = false;
+			#endif
                         break;
 
                     case SDLK_RIGHT:
 			case SDLK_d:
-                        this->rightKeyPressed = false;
+			#ifdef __EMSCRIPTEN__
+				pointerXdiff = 0;
+			#else				
+				this->rightKeyPressed = false;
+			#endif
                         break;
 
                     case SDLK_UP:
