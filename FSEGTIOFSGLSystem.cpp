@@ -21,6 +21,8 @@
 
 #include "Input/FSEGTIOFSGLInputController.h"
 
+#include <FlameSteelEngineGameToolkit/IO/AudioPlayer/FSEGTAudioPlayer.h>
+
 FSEGTIOFSGLSystem::FSEGTIOFSGLSystem() {
 }
 
@@ -34,6 +36,8 @@ void FSEGTIOFSGLSystem::initialize(shared_ptr<FSEGTIOSystemParams> ) {
 	renderer->ioSystem = shared_from_this();
 
  fsglRenderer->initialize();
+
+	audioPlayer = make_shared<FSEGTAudioPlayer>();
 
     auto window = fsglRenderer->window;
     
