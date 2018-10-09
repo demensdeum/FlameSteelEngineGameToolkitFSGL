@@ -35,9 +35,6 @@ public:
     virtual void objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object);
     virtual void objectsContextAllObjectsRemoved(shared_ptr<FSEGTObjectsContext> context);
     virtual void objectsContextObjectRemoved(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object);
-    
-    virtual void addRenderID(string id);
-    virtual void cleanRenderIDs();    
 
 	SDL_Window *window = nullptr;
     
