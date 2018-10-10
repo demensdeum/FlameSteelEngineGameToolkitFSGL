@@ -13,6 +13,7 @@
 
 #include "FSEGTIOFSGLSystem.h"
 
+#include <SDL2/SDL_image.h>
 #include <iostream>
 
 #include "Renderers/FSEGTIOFSGLSystemRenderer.h"
@@ -36,6 +37,13 @@ void FSEGTIOFSGLSystem::initialize(shared_ptr<FSEGTIOSystemParams> ) {
 	renderer->ioSystem = shared_from_this();
 
  fsglRenderer->initialize();
+
+	int flags=IMG_INIT_PNG;
+	int initted=IMG_Init(flags);
+	if ((initted&flags) != flags) {
+		printf("IMG_Init: Failed to init required jpg and png support!\n");
+		printf("IMG_Init: %s\n", IMG_GetError());
+	}
 
 	audioPlayer = make_shared<FSEGTAudioPlayer>();
 
