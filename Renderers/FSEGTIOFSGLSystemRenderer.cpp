@@ -16,7 +16,7 @@
 #include <iostream>
 #include <FlameSteelEngineGameToolkit/Utils/FSEGTUtils.h>
 
-#include "../Data/FSGTIOFSGLSystemFactory.h"
+#include <FlameSteelEngineGameToolkitFSGL/Data/FSGTIOFSGLSystemFactory.h>
 
 FSEGTIOFSGLSystemRenderer::FSEGTIOFSGLSystemRenderer() {
 }

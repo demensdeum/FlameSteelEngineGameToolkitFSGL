@@ -13,15 +13,11 @@
 
 #include "FSEGTIOFSGLSystem.h"
 
-#include <SDL2/SDL_image.h>
 #include <iostream>
-
-#include "Renderers/FSEGTIOFSGLSystemRenderer.h"
-
+#include <SDL2/SDL_image.h>
+#include <FlameSteelEngineGameToolkitFSGL/Renderers/FSEGTIOFSGLSystemRenderer.h>
 #include <FlameSteelEngineGameToolkit/IO/Input/FSEGTInputController.h>
-
-#include "Input/FSEGTIOFSGLInputController.h"
-
+#include <FlameSteelEngineGameToolkitFSGL/Input/FSEGTIOFSGLInputController.h>
 #include <FlameSteelEngineGameToolkit/IO/AudioPlayer/FSEGTAudioPlayer.h>
 
 FSEGTIOFSGLSystem::FSEGTIOFSGLSystem() {
@@ -29,7 +25,7 @@ FSEGTIOFSGLSystem::FSEGTIOFSGLSystem() {
 
 void FSEGTIOFSGLSystem::initialize(shared_ptr<FSEGTIOSystemParams> params) {
     
-    cout << "FSGL Desktop Initialize" << endl;
+	cout << "FSGL Desktop Initialize" << endl;
     
 	auto fsglRenderer = make_shared<FSEGTIOFSGLSystemRenderer>();
 
