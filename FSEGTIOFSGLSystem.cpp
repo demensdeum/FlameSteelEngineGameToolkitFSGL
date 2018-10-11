@@ -27,16 +27,18 @@
 FSEGTIOFSGLSystem::FSEGTIOFSGLSystem() {
 }
 
-void FSEGTIOFSGLSystem::initialize(shared_ptr<FSEGTIOSystemParams> ) {
+void FSEGTIOFSGLSystem::initialize(shared_ptr<FSEGTIOSystemParams> params) {
     
     cout << "FSGL Desktop Initialize" << endl;
     
 	auto fsglRenderer = make_shared<FSEGTIOFSGLSystemRenderer>();
 
-    renderer = fsglRenderer;
+	renderer = fsglRenderer;
 	renderer->ioSystem = shared_from_this();
 
- fsglRenderer->initialize();
+	auto genericParams = static_pointer_cast<FSEGTIOGenericSystemParams>(params);
+
+	fsglRenderer->initialize(genericParams);
 
 	int flags=IMG_INIT_PNG;
 	int initted=IMG_Init(flags);
