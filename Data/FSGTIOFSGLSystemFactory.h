@@ -29,7 +29,7 @@ public:
     FSGTIOFSGLSystemFactory(const FSGTIOFSGLSystemFactory& orig);
     virtual ~FSGTIOFSGLSystemFactory();
     
-    static shared_ptr<FSGLObject> graphicsObjectFrom(shared_ptr<Object> object);
+    static shared_ptr<FSGLObject> graphicsObjectFrom(shared_ptr<Object> object, shared_ptr<MaterialLibrary> materialLibrary);
     
 private:
 

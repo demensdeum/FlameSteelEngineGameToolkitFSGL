@@ -27,7 +27,7 @@ FSGTIOFSGLSystemFactory::FSGTIOFSGLSystemFactory() {
 FSGTIOFSGLSystemFactory::FSGTIOFSGLSystemFactory(const FSGTIOFSGLSystemFactory& ) {
 }
 
-shared_ptr<FSGLObject> FSGTIOFSGLSystemFactory::graphicsObjectFrom(shared_ptr<Object> object) {
+shared_ptr<FSGLObject> FSGTIOFSGLSystemFactory::graphicsObjectFrom(shared_ptr<Object> object, shared_ptr<MaterialLibrary> materialLibrary) {
     
     auto model = shared_ptr<FSGLModel>();
     
@@ -53,12 +53,12 @@ shared_ptr<FSGLObject> FSGTIOFSGLSystemFactory::graphicsObjectFrom(shared_ptr<Ob
     
 	    auto preparedModelFilePath = FSEGTUtils::platformPath(stream.str().c_str());
 
-	    model = static_pointer_cast<FSGLModel>(FSGLResourceLoader::loadResource(preparedModelFilePath));
+	    model = static_pointer_cast<FSGLModel>(FSGLResourceLoader::loadResource(preparedModelFilePath, materialLibrary));
 
 	}
 	else if (serializedModel.get() != nullptr) {
 
-		model = FSGLResourceLoader::deserializeModel(serializedModel);
+		model = FSGLResourceLoader::deserializeModel(serializedModel, materialLibrary);
 
 	}
     

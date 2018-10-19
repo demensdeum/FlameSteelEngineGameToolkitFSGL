@@ -55,7 +55,15 @@ void FSEGTIOFSGLSystemRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObject
 
     if (FSEGTUtils::contains3D(object)) {
 
-        auto graphicsObject = FSGTIOFSGLSystemFactory::graphicsObjectFrom(object);
+	auto materialLibrary = ioSystem->materialLibrary;
+
+	if (materialLibrary.get() == nullptr) {
+
+		throw logic_error("Material Library nullptr - stop");
+
+	}
+
+        auto graphicsObject = FSGTIOFSGLSystemFactory::graphicsObjectFrom(object, materialLibrary);
 
         controller->addObject(graphicsObject);
 
