@@ -24,14 +24,17 @@ FSEGTIOFSGLSystemRenderer::FSEGTIOFSGLSystemRenderer() {
 FSEGTIOFSGLSystemRenderer::FSEGTIOFSGLSystemRenderer(const FSEGTIOFSGLSystemRenderer& ) {
 }
 
-void FSEGTIOFSGLSystemRenderer::initialize(shared_ptr<FSEGTIOGenericSystemParams> params) {
+void FSEGTIOFSGLSystemRenderer::initialize(shared_ptr<FSEGTIOSystemParams> params) {
 
 	if (params.get() == nullptr) {
 		throw logic_error("Can't initialize FSGLSystemRenderer - params initialize");
 	}
 
     controller = make_shared<FSGLController>();
-    window = controller->initialize(params);
+    
+    auto castedParams = static_pointer_cast<FSEGTIOGenericSystemParams>(params);
+    
+    window = controller->initialize(castedParams);
 
 }
 
