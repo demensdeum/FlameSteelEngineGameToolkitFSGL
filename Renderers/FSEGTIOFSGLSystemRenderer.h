@@ -27,7 +27,7 @@ public:
     FSEGTIOFSGLSystemRenderer(const FSEGTIOFSGLSystemRenderer& orig);
     virtual ~FSEGTIOFSGLSystemRenderer();
     
-    virtual void initialize(shared_ptr<FSEGTIOGenericSystemParams> params = nullptr);    
+    virtual void initialize(shared_ptr<FSEGTIOSystemParams> params = nullptr);    
     
     virtual void render(shared_ptr<FSEGTGameData> gameData);
     
