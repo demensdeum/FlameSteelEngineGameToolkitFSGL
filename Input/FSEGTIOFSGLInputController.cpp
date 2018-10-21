@@ -13,6 +13,14 @@
 
 #include "FSEGTIOFSGLInputController.h"
 
+#if __EMSCRIPTEN__
+#include <emscripten.h>
+#include <emscripten/val.h>
+
+using namespace emscripten;
+
+#endif
+
 #include <SDL2/SDL.h>
 #include <iostream>
 
@@ -26,6 +34,74 @@ FSEGTIOFSGLInputController::FSEGTIOFSGLInputController(const FSEGTIOFSGLInputCon
 }
 
 void FSEGTIOFSGLInputController::pollKey() {
+    
+#if __EMSCRIPTEN__
+
+if (!pointerPollingStarted) {
+		EM_ASM(
+
+			___globalFSEGTIOFSGLJSMouseXDiff = 0;
+			___globalFSEGTIOFSGLJSMouseYDiff = 0;
+
+			{
+				/*var moveCallback = function(event) {
+					var x = event.movementX;
+					var y = event.movementY;
+
+					var movementString = "x: ";
+					movementString += x.toString();
+					movementString += " y: ";
+					movementString += y.toString();
+
+					console.log(movementString);
+				}*/
+
+				var canvas = document.getElementById("canvas");
+				
+				canvas.addEventListener('click', function(){
+
+					if (document.pointerLockElement === canvas){
+						//document.exitPointerLock();
+					} 
+					else {
+						canvas.requestPointerLock();
+					}
+
+				}, false);
+
+				document.addEventListener("mousemove", function(event) {
+
+					if (document.pointerLockElement === canvas){
+
+						___globalFSEGTIOFSGLJSMouseXDiff = event.movementX;
+						___globalFSEGTIOFSGLJSMouseYDiff = event.movementY;
+
+					}
+					else {
+						___globalFSEGTIOFSGLJSMouseXDiff = 0;
+						___globalFSEGTIOFSGLJSMouseYDiff = 0;
+					}
+
+				}, false);
+
+			}
+		);
+
+	pointerPollingStarted = true;
+}
+
+val jsMouseXdiff = val::global("___globalFSEGTIOFSGLJSMouseXDiff");
+val jsMouseYdiff = val::global("___globalFSEGTIOFSGLJSMouseYDiff");
+
+pointerXdiff = jsMouseXdiff.as<int>();
+pointerYdiff = jsMouseYdiff.as<int>();
+
+EM_ASM(
+			___globalFSEGTIOFSGLJSMouseXDiff = 0;
+			___globalFSEGTIOFSGLJSMouseYDiff = 0;
+);
+
+#else
     
     SDL_PumpEvents();
     
@@ -46,9 +122,7 @@ void FSEGTIOFSGLInputController::pollKey() {
     int windowHeight = 0;
     
     SDL_GetWindowSize(window, &windowWidth, &windowHeight);
-    
-#ifndef __EMSCRIPTEN__
-    
+
     // SDL2 bug workaround https://stackoverflow.com/questions/17762842/sdl-getmousestate-doesnt-work-to-get-initial-mouse-position
     
     if (mouseX > 0 && mouseY > 0)
@@ -109,22 +183,13 @@ void FSEGTIOFSGLInputController::pollKey() {
                         
                     case SDLK_LEFT:
                     case SDLK_a:
-                        
-#ifdef __EMSCRIPTEN__
-                        pointerXdiff = -10;
-#else
                         leftKeyPressed = true;
-#endif
                         
                         break;
                         
                     case SDLK_RIGHT:
                     case SDLK_d:
-#ifdef __EMSCRIPTEN__
-                        pointerXdiff = 10;
-#else
                         rightKeyPressed = true;
-#endif
                         break;
                         
                     case SDLK_UP:
@@ -167,20 +232,12 @@ void FSEGTIOFSGLInputController::pollKey() {
                         
                     case SDLK_LEFT:
                     case SDLK_a:
-#ifdef __EMSCRIPTEN__
-                        pointerXdiff = 0;
-#else
                         this->leftKeyPressed = false;
-#endif
                         break;
                         
                     case SDLK_RIGHT:
                     case SDLK_d:
-#ifdef __EMSCRIPTEN__
-                        pointerXdiff = 0;
-#else
                         this->rightKeyPressed = false;
-#endif
                         break;
                         
                     case SDLK_UP:
