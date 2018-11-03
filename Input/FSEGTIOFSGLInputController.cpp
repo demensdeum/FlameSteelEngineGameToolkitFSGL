@@ -26,6 +26,8 @@ using namespace emscripten;
 
 FSEGTIOFSGLInputController::FSEGTIOFSGLInputController() {
     
+	touches = make_shared<Objects>();
+
     FSEGTInputController::clearKeys();
     
 }
@@ -150,10 +152,30 @@ EM_ASM(
     
     SDL_Event event;
     
+#if __EMSCRIPTEN__
+    int windowWidth = 0;
+    int windowHeight = 0;
+#endif
+    
+    SDL_GetWindowSize(window, &windowWidth, &windowHeight);
+
     while (SDL_PollEvent(&event)) {
         
         switch (event.type) {
                 
+		case SDL_FINGERDOWN:
+		case SDL_FINGERMOTION:
+		case SDL_FINGERUP:
+		{
+			//cout << "Touch event" << endl;
+
+			float x = float(windowWidth) * event.tfinger.x;
+			float y = float(windowHeight) * event.tfinger.y;
+			auto touch = make_shared<FSEGTTouch>(x, y);
+			touches->addObject(touch);
+		}
+			break;
+
             case SDL_QUIT:
                 this->exitKeyPressed = true;
                 break;
