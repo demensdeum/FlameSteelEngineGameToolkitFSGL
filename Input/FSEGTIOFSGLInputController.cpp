@@ -164,15 +164,45 @@ EM_ASM(
         switch (event.type) {
                 
 		case SDL_FINGERDOWN:
-		case SDL_FINGERMOTION:
-		case SDL_FINGERUP:
 		{
-			//cout << "Touch event" << endl;
-
 			float x = float(windowWidth) * event.tfinger.x;
 			float y = float(windowHeight) * event.tfinger.y;
-			auto touch = make_shared<FSEGTTouch>(x, y);
+
+			auto touchId = event.tfinger.touchId;
+			auto uuid = make_shared<string>(std::to_string(touchId));
+
+			cout << "fingerdown:" << *uuid << endl;
+
+			auto touch = make_shared<FSEGTTouch>(uuid, x, y);
 			touches->addObject(touch);
+			break;
+		}
+		case SDL_FINGERMOTION:
+		{
+			float x = float(windowWidth) * event.tfinger.x;
+			float y = float(windowHeight) * event.tfinger.y;
+
+			auto touchId = event.tfinger.touchId;
+			auto uuid = make_shared<string>(std::to_string(touchId));
+
+			cout << "fingermotion:" << *uuid << endl;
+
+			auto touch = touches->objectWithInstanceIdentifier(uuid);
+			auto touchCasted = static_pointer_cast<FSEGTTouch>(touch);
+			touchCasted->x = x;
+			touchCasted->y = y;
+
+			break;
+		}
+		case SDL_FINGERUP:
+		{
+			auto touchId = event.tfinger.touchId;
+			auto uuid = make_shared<string>(std::to_string(touchId));
+
+			cout << "fingerup:" << *uuid << endl;
+
+			touches->removeObjectWithClassIdentifier(uuid);
+			break;
 		}
 			break;
 
