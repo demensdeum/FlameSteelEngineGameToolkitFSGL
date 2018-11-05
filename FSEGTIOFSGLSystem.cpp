@@ -25,7 +25,7 @@ FSEGTIOFSGLSystem::FSEGTIOFSGLSystem() {
 
 void FSEGTIOFSGLSystem::initialize(shared_ptr<FSEGTIOSystemParams> params) {
     
-	cout << "FSGL Desktop Initialize" << endl;
+	//cout << "FSGL Desktop Initialize" << endl;
     
 	materialLibrary = make_shared<MaterialLibrary>();
 

@@ -171,7 +171,7 @@ EM_ASM(
 			auto touchId = event.tfinger.touchId;
 			auto uuid = make_shared<string>(std::to_string(touchId));
 
-			cout << "fingerdown:" << *uuid << endl;
+			//cout << "fingerdown:" << *uuid << endl;
 
 			auto touch = make_shared<FSEGTTouch>(uuid, x, y);
 			touches->addObject(touch);
@@ -185,7 +185,7 @@ EM_ASM(
 			auto touchId = event.tfinger.touchId;
 			auto uuid = make_shared<string>(std::to_string(touchId));
 
-			cout << "fingermotion:" << *uuid << endl;
+			//cout << "fingermotion:" << *uuid << endl;
 
 			auto touch = touches->objectWithInstanceIdentifier(uuid);
 			auto touchCasted = static_pointer_cast<FSEGTTouch>(touch);
@@ -199,7 +199,7 @@ EM_ASM(
 			auto touchId = event.tfinger.touchId;
 			auto uuid = make_shared<string>(std::to_string(touchId));
 
-			cout << "fingerup:" << *uuid << endl;
+			//cout << "fingerup:" << *uuid << endl;
 
 			touches->removeObjectWithClassIdentifier(uuid);
 			break;

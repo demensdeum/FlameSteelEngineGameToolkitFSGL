@@ -46,11 +46,11 @@ void FSEGTIOFSGLSystemRenderer::render(shared_ptr<FSEGTGameData> ) {
 
 void FSEGTIOFSGLSystemRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> , shared_ptr<Object> object) {
 
-    //cout << "FSEGTIOFSGLSystemRenderer: object add - " << object->getInstanceIdentifier()->c_str() << endl;
+    ////cout << "FSEGTIOFSGLSystemRenderer: object add - " << object->getInstanceIdentifier()->c_str() << endl;
 
 	if (object->getClassIdentifier().get() == nullptr) {
 
-		cout << "FSEGTIOFSGLSystemRenderer: empty name for added object - exit" << endl;
+		//cout << "FSEGTIOFSGLSystemRenderer: empty name for added object - exit" << endl;
 
 		exit(1);
 	
@@ -133,7 +133,7 @@ void FSEGTIOFSGLSystemRenderer::objectsContextObjectUpdate(shared_ptr<FSEGTObjec
 
 void FSEGTIOFSGLSystemRenderer::objectsContextAllObjectsRemoved(shared_ptr<FSEGTObjectsContext> ) {
 
-    //cout << "FSEGTIOFSGLSystemRenderer: all objects removed" << endl;
+    ////cout << "FSEGTIOFSGLSystemRenderer: all objects removed" << endl;
 
     controller->removeAllObjects();
     
