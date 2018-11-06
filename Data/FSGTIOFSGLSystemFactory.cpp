@@ -94,7 +94,13 @@ shared_ptr<FSGLObject> FSGTIOFSGLSystemFactory::graphicsObjectFrom(shared_ptr<Ob
 
 	graphicsObject->brightness = brightness->floatNumber;
 
-	graphicsObject->flag2D = FSEGTUtils::isOnScreenObject(object);
+	auto layer = 1;
+
+	if (FSEGTUtils::isOnScreenObject(object)) {
+		layer = 2;
+	}
+
+	graphicsObject->layer = layer;
 
 	if (object->containsComponentWithIdentifier(make_shared<string>("Surface Material"))) {
 
