@@ -21,6 +21,8 @@
 
 #include <sstream>
 
+using namespace FlameSteelEngine::GameToolkit::SceneLayer;
+
 FSGTIOFSGLSystemFactory::FSGTIOFSGLSystemFactory() {
 }
 
@@ -94,10 +96,13 @@ shared_ptr<FSGLObject> FSGTIOFSGLSystemFactory::graphicsObjectFrom(shared_ptr<Ob
 
 	graphicsObject->brightness = brightness->floatNumber;
 
-	auto layer = 1;
+	auto layer = Scene;
 
 	if (FSEGTUtils::isOnScreenObject(object)) {
-		layer = 2;
+		layer = Screen;
+	}
+	else if (FSEGTUtils::isSkyboxObject(object)) {
+		layer = Skybox;
 	}
 
 	graphicsObject->layer = layer;
